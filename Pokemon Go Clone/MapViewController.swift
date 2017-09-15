@@ -16,10 +16,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var manager = CLLocationManager()
     var updateCount = 0
     
+    var pokemons : [Pokemon] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getAllPokemon()
+        pokemons = getAllPokemon()
         
         manager.delegate = self
         
