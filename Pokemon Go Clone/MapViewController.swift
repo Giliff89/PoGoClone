@@ -43,7 +43,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         manager.startUpdatingLocation()
         mapView.delegate = self
         
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (timer) in
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (timer) in
             if let center = self.manager.location?.coordinate {
                 var annoCoord = center
                 annoCoord.latitude += (Double(arc4random_uniform(200)) - 100.0) / 50000.0
@@ -53,7 +53,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 
                 let randomPokemon = self.pokemons[randomIndex]
                 
-                let anno = PokeAnnotation(coord: center, pokemon: randomPokemon)
+                let anno = PokeAnnotation(coord: annoCoord, pokemon: randomPokemon)
                 self.mapView.addAnnotation(anno)
             }
         }
@@ -68,7 +68,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             annoView.image = UIImage(named: "player-1")
             var frame = annoView.frame
             frame.size.height = 40
-            frame.size.height = 40
+            frame.size.width = 40
             annoView.frame = frame
         } else {
             if let pokeAnnotation = annotation as? PokeAnnotation {
@@ -76,7 +76,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                     annoView.image = UIImage(named: imageName)
                     var frame = annoView.frame
                     frame.size.height = 40
-                    frame.size.height = 40
+                    frame.size.width = 40
                     annoView.frame = frame
                 }
             }
